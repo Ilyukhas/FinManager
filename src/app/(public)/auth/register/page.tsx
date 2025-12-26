@@ -44,11 +44,11 @@ export default function RegisterPage() {
       });
       if (error) throw error;
 
-      // If email confirmations are ON, user may need to confirm email.
+
       if (!data.session) {
         setNote("Проверьте почту: нужно подтвердить email");
       } else {
-        // seed defaults (wallet + categories) via API (uses current session & RLS)
+
         await fetch("/api/seed", { method: "POST" });
         router.push("/dashboard");
         router.refresh();

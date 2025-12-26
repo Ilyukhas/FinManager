@@ -13,7 +13,6 @@ export async function createServerSupabase() {
         return cookieStore.get(name)?.value;
       },
       set(name: string, value: string, options: CookieOptions) {
-        // Next.js route handlers can set cookies via cookies().set, but in Server Components we don't set.
         try {
           cookieStore.set({ name, value, ...options });
         } catch {}

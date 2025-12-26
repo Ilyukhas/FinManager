@@ -17,7 +17,7 @@ export default function ProfilePage() {
   const [catName, setCatName] = useState("Кофе");
   const [catType, setCatType] = useState<"доходы" | "EXPENSE">("EXPENSE");
 
-  // Функция для перевода типа категории на русский
+
   function translateType(type: string): string {
     if (type === "EXPENSE") return "Расход";
     if (type === "INCOME") return "Доход";

@@ -3,7 +3,6 @@ import { createServerSupabase } from "@/lib/supabase/server";
 import { ok, bad } from "@/app/api/_utils";
 
 export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
-  // ДОБАВЬ ЭТУ СТРОЧКУ:
   const { id } = await params;
 
   const supabase = await createServerSupabase();
