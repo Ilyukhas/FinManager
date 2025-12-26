@@ -1,25 +1,26 @@
 import { createServerClient } from "@supabase/ssr";
 import type { CookieOptions } from "@supabase/ssr";
-import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { getSupabaseEnv } from "./env";
+import {cookies} from "next/headers";
 
-export function createServerSupabase(cookies: ReadonlyRequestCookies) {
+export async function createServerSupabase() {
   const { url, anon } = getSupabaseEnv();
+  const cookieStore = await cookies();
 
   return createServerClient(url, anon, {
     cookies: {
       get(name: string) {
-        return cookies.get(name)?.value;
+        return cookieStore.get(name)?.value;
       },
       set(name: string, value: string, options: CookieOptions) {
         // Next.js route handlers can set cookies via cookies().set, but in Server Components we don't set.
         try {
-          cookies.set({ name, value, ...options });
+          cookieStore.set({ name, value, ...options });
         } catch {}
       },
       remove(name: string, options: CookieOptions) {
         try {
-          cookies.set({ name, value: "", ...options });
+          cookieStore.set({ name, value: "", ...options });
         } catch {}
       },
     },

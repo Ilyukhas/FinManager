@@ -1,8 +1,9 @@
 import { apiGet } from "@/lib/http/api";
 import { OverviewCharts } from "@/components/charts/overview-charts";
+import {getOverview} from "@/app/api/analytics/overview/route";
 
 export default async function AnalyticsPage() {
-  const data = await apiGet("/api/analytics/overview");
+  const data = await getOverview();
   return (
     <div className="space-y-6">
       <div>

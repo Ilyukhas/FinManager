@@ -1,9 +1,10 @@
 import { MetricCard } from "@/components/ui/metric-card";
 import { OverviewCharts } from "@/components/charts/overview-charts";
 import { apiGet } from "@/lib/http/api";
+import {getOverview} from "@/app/api/analytics/overview/route";
 
 export default async function DashboardPage() {
-  const data = await apiGet("/api/analytics/overview");
+  const data = await getOverview();
 
   return (
     <div className="space-y-6">

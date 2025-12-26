@@ -9,10 +9,10 @@ function monthKey(d: Date) {
   return `${y}-${m}`;
 }
 
-export async function GET() {
-  const supabase = createServerSupabase(cookies());
+export async function getOverview() {
+  const supabase = await createServerSupabase();
   const { data: u } = await supabase.auth.getUser();
-  if (!u.user) return bad("Unauthorized", 401);
+  if (!u.user) throw new Error("Unauthorized");
 
   const { data: wallets } = await supabase.from("wallets").select("balance_cents,currency");
   const balance = (wallets ?? []).reduce((a, w) => a + (w.balance_cents ?? 0), 0);
@@ -67,7 +67,7 @@ export async function GET() {
   const current = (inv ?? []).reduce((a, x) => a + x.current_value_cents, 0);
   const roi = invested > 0 ? (current - invested) / invested : 0;
 
-  return ok({
+  return {
     balanceLabel: formatMoney(balance, "EUR"),
     balanceHint: "Сумма балансов по кошелькам",
     income30Label: formatMoney(income30, "EUR"),
@@ -77,5 +77,5 @@ export async function GET() {
     investInvestedLabel: formatMoney(invested, "EUR"),
     investCurrentLabel: formatMoney(current, "EUR"),
     investRoiLabel: `${(roi * 100).toFixed(2)}%`,
-  });
+  };
 }

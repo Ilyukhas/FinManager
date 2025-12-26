@@ -3,7 +3,7 @@ import { createServerSupabase } from "@/lib/supabase/server";
 import { ok, bad } from "@/app/api/_utils";
 
 export async function DELETE(_: Request, { params }: { params: { id: string } }) {
-  const supabase = createServerSupabase(cookies());
+  const supabase = await createServerSupabase();
   const { data: u } = await supabase.auth.getUser();
   if (!u.user) return bad("Unauthorized", 401);
 

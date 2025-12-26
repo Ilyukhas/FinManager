@@ -3,7 +3,7 @@ import { createServerSupabase } from "@/lib/supabase/server";
 import { ok, bad } from "@/app/api/_utils";
 
 export async function POST() {
-  const supabase = createServerSupabase(cookies());
+  const supabase = await createServerSupabase();
   const { data: u } = await supabase.auth.getUser();
   const user = u.user;
   if (!user) return bad("Unauthorized", 401);
