@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const name = String(body?.name ?? "").trim();
-  const currency = String(body?.currency ?? "EUR").trim().toUpperCase();
+  const currency = String(body?.currency ?? "RUB").trim().toUpperCase();
   if (!name) return bad("name is required");
 
   const { data, error } = await supabase

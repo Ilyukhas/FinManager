@@ -119,11 +119,11 @@ export default function InvestmentsPage() {
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
               <p className="text-xs text-slate-500 dark:text-slate-400">Вложено</p>
-              <p className="mt-2 text-lg font-semibold">{formatMoney(summary.investedC, "EUR")}</p>
+              <p className="mt-2 text-lg font-semibold">{formatMoney(summary.investedC, "RUB")}</p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
               <p className="text-xs text-slate-500 dark:text-slate-400">Текущая стоимость</p>
-              <p className="mt-2 text-lg font-semibold">{formatMoney(summary.currentC, "EUR")}</p>
+              <p className="mt-2 text-lg font-semibold">{formatMoney(summary.currentC, "RUB")}</p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
               <p className="text-xs text-slate-500 dark:text-slate-400">ROI</p>

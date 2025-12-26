@@ -68,14 +68,14 @@ export async function getOverview() {
   const roi = invested > 0 ? (current - invested) / invested : 0;
 
   return {
-    balanceLabel: formatMoney(balance, "EUR"),
+    balanceLabel: formatMoney(balance, "RUB"),
     balanceHint: "Сумма балансов по кошелькам",
-    income30Label: formatMoney(income30, "EUR"),
-    expense30Label: formatMoney(expense30, "EUR"),
-    net30Label: formatMoney(net30, "EUR"),
+    income30Label: formatMoney(income30, "RUB"),
+    expense30Label: formatMoney(expense30, "RUB"),
+    net30Label: formatMoney(net30, "RUB"),
     monthlySeries,
-    investInvestedLabel: formatMoney(invested, "EUR"),
-    investCurrentLabel: formatMoney(current, "EUR"),
+    investInvestedLabel: formatMoney(invested, "RUB"),
+    investCurrentLabel: formatMoney(current, "RUB"),
     investRoiLabel: `${(roi * 100).toFixed(2)}%`,
   };
 }

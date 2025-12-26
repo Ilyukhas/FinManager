@@ -11,7 +11,7 @@ export async function POST() {
   // wallet
   const { data: existingWallets } = await supabase.from("wallets").select("id").limit(1);
   if (!existingWallets || existingWallets.length === 0) {
-    await supabase.from("wallets").insert({ user_id: user.id, name: "Основной", currency: "EUR", balance_cents: 0 });
+    await supabase.from("wallets").insert({ user_id: user.id, name: "Основной", currency: "RUB", balance_cents: 0 });
   }
 
   // categories

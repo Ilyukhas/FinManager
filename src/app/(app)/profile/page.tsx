@@ -12,10 +12,17 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
 
   const [walletName, setWalletName] = useState("Основной");
-  const [currency, setCurrency] = useState("EUR");
+  const [currency, setCurrency] = useState("RUB");
 
   const [catName, setCatName] = useState("Кофе");
-  const [catType, setCatType] = useState<"INCOME" | "EXPENSE">("EXPENSE");
+  const [catType, setCatType] = useState<"доходы" | "EXPENSE">("EXPENSE");
+
+  // Функция для перевода типа категории на русский
+  function translateType(type: string): string {
+    if (type === "EXPENSE") return "Расход";
+    if (type === "INCOME") return "Доход";
+    return type;
+  }
 
   async function loadAll() {
     setLoading(true);
@@ -59,66 +66,68 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Профиль</h1>
-      </div>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Профиль</h1>
+        </div>
 
-      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-        <Card>
-          <h2 className="text-sm font-medium">Кошельки</h2>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <Input label="Название" value={walletName} onChange={(e) => setWalletName(e.target.value)} />
-            <Input label="Валюта" value={currency} onChange={(e) => setCurrency(e.target.value)} />
-          </div>
-          <Button className="mt-3" onClick={addWallet}>Добавить кошелёк</Button>
-
-          <div className="mt-4 divide-y divide-slate-200 dark:divide-slate-800">
-            {loading ? <p className="py-3 text-sm text-slate-600 dark:text-slate-300">Загрузка...</p> : null}
-            {wallets.map((w) => (
-              <div key={w.id} className="flex items-center justify-between py-3 text-sm">
-                <div>
-                  <p className="font-medium">{w.name}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{w.currency}</p>
-                </div>
-                <Button variant="ghost" onClick={() => deleteWallet(w.id)}>Удалить</Button>
-              </div>
-            ))}
-          </div>
-        </Card>
-
-        <Card>
-          <h2 className="text-sm font-medium">Категории</h2>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <Input label="Название" value={catName} onChange={(e) => setCatName(e.target.value)} />
-            <div>
-              <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-300">Тип</label>
-              <select
-                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-sky-500 dark:border-slate-800 dark:bg-slate-950"
-                value={catType}
-                onChange={(e) => setCatType(e.target.value as any)}
-              >
-                <option value="EXPENSE">Расход</option>
-                <option value="INCOME">Доход</option>
-              </select>
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+          <Card>
+            <h2 className="text-sm font-medium">Кошельки</h2>
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <Input label="Название" value={walletName} onChange={(e) => setWalletName(e.target.value)} />
+              <Input label="Валюта" value={currency} onChange={(e) => setCurrency(e.target.value)} />
             </div>
-          </div>
-          <Button className="mt-3" onClick={addCategory}>Добавить категорию</Button>
+            <Button className="mt-3" onClick={addWallet}>Добавить кошелёк</Button>
 
-          <div className="mt-4 divide-y divide-slate-200 dark:divide-slate-800">
-            {loading ? <p className="py-3 text-sm text-slate-600 dark:text-slate-300">Загрузка...</p> : null}
-            {categories.map((c) => (
-              <div key={c.id} className="flex items-center justify-between py-3 text-sm">
-                <div>
-                  <p className="font-medium">{c.name}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{c.type}</p>
-                </div>
-                <Button variant="ghost" onClick={() => deleteCategory(c.id)}>Удалить</Button>
+            <div className="mt-4 divide-y divide-slate-200 dark:divide-slate-800">
+              {loading ? <p className="py-3 text-sm text-slate-600 dark:text-slate-300">Загрузка...</p> : null}
+              {wallets.map((w) => (
+                  <div key={w.id} className="flex items-center justify-between py-3 text-sm">
+                    <div>
+                      <p className="font-medium">{w.name}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">{w.currency}</p>
+                    </div>
+                    <Button variant="ghost" onClick={() => deleteWallet(w.id)}>Удалить</Button>
+                  </div>
+              ))}
+            </div>
+          </Card>
+
+          <Card>
+            <h2 className="text-sm font-medium">Категории</h2>
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <Input label="Название" value={catName} onChange={(e) => setCatName(e.target.value)} />
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-300">Тип</label>
+                <select
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-sky-500 dark:border-slate-800 dark:bg-slate-950"
+                    value={catType}
+                    onChange={(e) => setCatType(e.target.value as any)}
+                >
+                  <option value="EXPENSE">Расход</option>
+                  <option value="INCOME">Доход</option>
+                </select>
               </div>
-            ))}
-          </div>
-        </Card>
+            </div>
+            <Button className="mt-3" onClick={addCategory}>Добавить категорию</Button>
+
+            <div className="mt-4 divide-y divide-slate-200 dark:divide-slate-800">
+              {loading ? <p className="py-3 text-sm text-slate-600 dark:text-slate-300">Загрузка...</p> : null}
+              {categories.map((c) => (
+                  <div key={c.id} className="flex items-center justify-between py-3 text-sm">
+                    <div>
+                      <p className="font-medium">{c.name}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        {translateType(c.type)} {/* ← Здесь показываем русское название */}
+                      </p>
+                    </div>
+                    <Button variant="ghost" onClick={() => deleteCategory(c.id)}>Удалить</Button>
+                  </div>
+              ))}
+            </div>
+          </Card>
+        </div>
       </div>
-    </div>
   );
 }

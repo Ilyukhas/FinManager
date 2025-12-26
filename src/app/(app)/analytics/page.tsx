@@ -29,7 +29,7 @@ export default async function AnalyticsPage() {
           <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">ROI: {data.investRoiLabel}</p>
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
-          <p className="text-xs text-slate-500 dark:text-slate-400">Сальдо 30 дней</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Остаток 30 дней</p>
           <p className="mt-2 text-lg font-semibold">{data.net30Label}</p>
           <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Доходы минус расходы</p>
         </div>

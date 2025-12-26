@@ -22,9 +22,13 @@ export default function TransactionsPage() {
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [err, setErr] = useState<string | null>(null);
 
+  // const filteredCategories = useMemo(
+  //   () => categories.filter((c) => c.type === type),
+  //   [categories, type]
+  // );
   const filteredCategories = useMemo(
-    () => categories.filter((c) => c.type === type),
-    [categories, type]
+      () => (Array.isArray(categories) ? categories.filter((c) => c.type === type) : []),
+      [categories, type]
   );
 
   async function loadAll() {
@@ -134,7 +138,7 @@ export default function TransactionsPage() {
           <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium">Итого</p>
-              <p className="text-sm font-semibold">{formatMoney(total, "EUR")}</p>
+              <p className="text-sm font-semibold">{formatMoney(total, "RUB")}</p>
             </div>
           </div>
 
@@ -157,7 +161,7 @@ export default function TransactionsPage() {
                     </div>
                     <div className="flex items-center gap-3">
                       <span className={t.type === "INCOME" ? "font-semibold text-emerald-600 dark:text-emerald-400" : "font-semibold text-rose-600 dark:text-rose-400"}>
-                        {t.type === "INCOME" ? "+" : "-"}{formatMoney(t.amount_cents, "EUR")}
+                        {t.type === "INCOME" ? "+" : "-"}{formatMoney(t.amount_cents, "RUB")}
                       </span>
                       <Button variant="ghost" onClick={() => removeTx(t.id)}>Удалить</Button>
                     </div>

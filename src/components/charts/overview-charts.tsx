@@ -11,8 +11,8 @@ export function OverviewCharts({ data }: { data: { month: string; income: number
           <XAxis dataKey="month" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="income" />
-          <Bar dataKey="expense" />
+          <Bar dataKey="income" name="Доходы" fill="#10b981"/>
+          <Bar dataKey="expense" name="Расходы" fill="#ef4444"/>
         </BarChart>
       </ResponsiveContainer>
     </div>

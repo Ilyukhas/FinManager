@@ -41,10 +41,6 @@ export default async function DashboardPage() {
               <span className="text-slate-600 dark:text-slate-300">ROI</span>
               <span className="font-semibold">{data.investRoiLabel}</span>
             </div>
-
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              ROI считается как (current - invested) / invested.
-            </p>
           </div>
         </div>
       </div>
