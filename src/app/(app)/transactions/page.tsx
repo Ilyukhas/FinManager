@@ -90,9 +90,6 @@ export default function TransactionsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">Доходы и расходы</h1>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-          CRUD операций через REST API (Next.js Route Handlers → Supabase).
-        </p>
       </div>
 
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">

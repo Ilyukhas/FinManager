@@ -86,9 +86,6 @@ export default function InvestmentsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">Инвестиции</h1>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-          Учет портфеля + ROI.
-        </p>
       </div>
 
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">

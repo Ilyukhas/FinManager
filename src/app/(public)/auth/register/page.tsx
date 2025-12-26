@@ -46,7 +46,7 @@ export default function RegisterPage() {
 
       // If email confirmations are ON, user may need to confirm email.
       if (!data.session) {
-        setNote("Проверь почту: нужно подтвердить email (если включено в Supabase Auth).");
+        setNote("Проверь почту: нужно подтвердить email");
       } else {
         // seed defaults (wallet + categories) via API (uses current session & RLS)
         await fetch("/api/seed", { method: "POST" });
